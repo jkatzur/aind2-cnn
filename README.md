@@ -10,6 +10,9 @@ Briding the first and second project here, we reviewed the challenges of MLPs an
 * MLPs only take in a vector not a matrix. In many domains that makes sense, but in image or video processing the distance between various points matters, and a vector has only 1d direction possible. Instead CNNs take a matrix as an input and understand the distance between points.
 * Further, MLPs use fully connected layers. This provides rich ability to utilize prior knowledge across many layers, but it also makes processing take substantially longer. When dealing with very complex input (e.g images and movies) this is a huge overhead. Instead, CNNs introduce locally connected layers that bringi n only the subsets of the layer most likely to impact the next one.
 
+## Key Types of Convolutional Layers
+* Convolutional Layers: these layers are the backbone of CNNs. They take input matrices, sets of filters, and classify the input based on the filters. They can be stacked together so, say, the first layers look for boundaries, then the next layers look for size of image, then the next layer looks at possible images of that size, etc...
+* Pooling Layers: these layers run on top of CNNs and their job is to reduce dimensionality. This improved computation performance and also helps avoid overfitting. 
 
 ## Second Mini Project: Convolutional Visualization
 In this mini project we began building intuition for convolutional neural layers. We showed what the filtered image looked like to get an intuition for what a filter does and how it gets applied to an image in practice. Post-filter, an image only has highlighted the area that applies to the filter. In this example we supplied the filters (vs having a CNN build it). We supplied 4 basic filters - representing horizontal and vertical boundaries so we could see how an image recognizes borders.
