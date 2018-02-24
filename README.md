@@ -1,73 +1,15 @@
-# aind2-cnn
+# AIND Mini Projects Continued - Convolutional Neural Nets
 
-### Instructions
+## First Mini Project: Review Deep Neural Nets
+In this first project at /mnist-mlp we used Multi-Layer-Perceptrons (MLPs) like in the prior unit to predict handwritten digits (e.g 0123456789). We were able to use this instead of CNNs because the images were small, simple, and highly conforming. We had a big enough data set, clean images, and consistent sizing so MLPs worked. Key takeaways from this project were:
+* Validation split is important to increase accuracy. Validation_split gives us a subset of our training data for validation. At each step, we add a validation checkpoint which freezes the parameters, including epoch # and saves the validation scores - helping you determine which number of epochs and other parameters perform best. We don't use the eventual test data because this would bias the test
+* Checkpoint and verbosity in the model allows us to understand how various models performed so that we can see if adding complexity is leading to overfitting or if the model actually requires it.
 
-1. Clone the repository and navigate to the downloaded folder.
-	
-```	
-git clone https://github.com/udacity/aind2-cnn.git
-cd aind2-cnn
-```
+## Motivation for CNNs
+Briding the first and second project here, we reviewed the challenges of MLPs and motivated CNNs...
+* MLPs only take in a vector not a matrix. In many domains that makes sense, but in image or video processing the distance between various points matters, and a vector has only 1d direction possible. Instead CNNs take a matrix as an input and understand the distance between points.
+* Further, MLPs use fully connected layers. This provides rich ability to utilize prior knowledge across many layers, but it also makes processing take substantially longer. When dealing with very complex input (e.g images and movies) this is a huge overhead. Instead, CNNs introduce locally connected layers that bringi n only the subsets of the layer most likely to impact the next one.
 
-2. (Optional) __If you plan to install TensorFlow with GPU support on your local machine__, follow [the guide](https://www.tensorflow.org/install/) to install the necessary NVIDIA software on your system.  If you are using an EC2 GPU instance, you can skip this step.
 
-3. (Optional) **If you are running the project on your local machine (and not using AWS)**, create (and activate) a new environment.
-
-	- __Linux__ (to install with __GPU support__, change `requirements/dog-linux.yml` to `requirements/dog-linux-gpu.yml`): 
-	```
-	conda env create -f requirements/dog-linux.yml
-	source activate dog-project
-	```  
-	- __Mac__ (to install with __GPU support__, change `requirements/dog-mac.yml` to `requirements/dog-mac-gpu.yml`): 
-	```
-	conda env create -f requirements/dog-mac.yml
-	source activate dog-project
-	```  
-	- __Windows__ (to install with __GPU support__, change `requirements/dog-windows.yml` to `requirements/dog-windows-gpu.yml`):  
-	```
-	conda env create -f requirements/dog-windows.yml
-	activate dog-project
-	```
-	
-4. (Optional) **If you are running the project on your local machine (and not using AWS)** and Step 6 throws errors, try this __alternative__ step to create your environment.
-
-	- __Linux__ or __Mac__ (to install with __GPU support__, change `requirements/requirements.txt` to `requirements/requirements-gpu.txt`): 
-	```
-	conda create --name dog-project python=3.5
-	source activate dog-project
-	pip install -r requirements/requirements.txt
-	```  
-	- __Windows__ (to install with __GPU support__, change `requirements/requirements.txt` to `requirements/requirements-gpu.txt`):  
-	```
-	conda create --name dog-project python=3.5
-	activate dog-project
-	pip install -r requirements/requirements.txt
-	```
-	
-5. (Optional) **If you are using AWS**, install Tensorflow.
-```
-sudo python3 -m pip install -r requirements/requirements-gpu.txt
-```
-	
-6. Switch [Keras backend](https://keras.io/backend/) to TensorFlow.
-	- __Linux__ or __Mac__: 
-		```
-		KERAS_BACKEND=tensorflow python -c "from keras import backend"
-		```
-	- __Windows__: 
-		```
-		set KERAS_BACKEND=tensorflow
-		python -c "from keras import backend"
-		```
-
-7. (Optional) **If you are running the project on your local machine (and not using AWS)**, create an [IPython kernel](http://ipython.readthedocs.io/en/stable/install/kernel_install.html) for the `dog-project` environment. 
-```
-python -m ipykernel install --user --name dog-project --display-name "dog-project"
-```
-
-8. Launch Jupyter notebook.
-```
-jupyter notebook
-```
-
-9. (Optional) **If you are running the project on your local machine (and not using AWS)**, before running code, change the kernel to match the dog-project environment by using the drop-down menu (**Kernel > Change kernel > dog-project**). 
+## Second Mini Project: Convolutional Visualization
+In this mini project we began building intuition for convolutional neural layers. We showed what the filtered image looked like to get an intuition for what a filter does and how it gets applied to an image in practice. Post-filter, an image only has highlighted the area that applies to the filter. In this example we supplied the filters (vs having a CNN build it). We supplied 4 basic filters - representing horizontal and vertical boundaries so we could see how an image recognizes borders.
